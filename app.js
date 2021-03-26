@@ -91,6 +91,7 @@ var editTask=function(){
     if(containsClass){
         if(editInput.value === ''){
             alert('Please enter a correctly text.')
+            editBtn.innerText="Edit";
         }
         else {
             //switch to .editmode
