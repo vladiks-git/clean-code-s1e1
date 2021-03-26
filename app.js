@@ -33,17 +33,17 @@ var createNewTaskElement=function(taskString){
     var deleteButtonImg=document.createElement("img");//delete button image
 
     label.innerText=taskString;
-    label.className='task';
+    label.className='main-content__task';
 
     //Each elements, needs appending
     checkBox.type="checkbox";
     editInput.type="text";
-    editInput.className="task";
+    editInput.className="main-content__task";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-    editButton.className="edit btn";
+    editButton.className="edit main-content__btn";
 
-    deleteButton.className="delete btn";
+    deleteButton.className="delete main-content__btn";
     deleteButtonImg.src='./remove.svg';
     deleteButton.appendChild(deleteButtonImg);
 
@@ -54,6 +54,7 @@ var createNewTaskElement=function(taskString){
     listItem.appendChild(editInput);
     listItem.appendChild(editButton);
     listItem.appendChild(deleteButton);
+    listItem.classList.add('main-content__list')
     return listItem;
 }
 
@@ -88,11 +89,15 @@ var editTask=function(){
     var containsClass=listItem.classList.contains("editMode");
     //If class of the parent is .editmode
     if(containsClass){
-
-        //switch to .editmode
-        //label becomes the inputs value.
-        label.innerText=editInput.value;
-        editBtn.innerText="Edit";
+        if(editInput.value === ''){
+            alert('Please enter a correctly text.')
+        }
+        else {
+            //switch to .editmode
+            //label becomes the inputs value.
+            label.innerText=editInput.value;
+            editBtn.innerText="Edit";
+        }
     }else{
         editInput.value=label.innerText;
         editBtn.innerText="Save";
